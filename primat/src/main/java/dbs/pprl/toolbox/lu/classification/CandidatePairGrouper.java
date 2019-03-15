@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 
 import dbs.pprl.toolbox.lu.blocking.Side;
 import dbs.pprl.toolbox.lu.matching.EncodedRecord;
-import dbs.pprl.toolbox.lu.similarityCalculation.CandidatePairSimilarityComparator;
 import dbs.pprl.toolbox.lu.similarityCalculation.CandidatePairWithSimilarity;
 
 /**
@@ -227,7 +226,7 @@ public final class CandidatePairGrouper {
 					Collectors.collectingAndThen(
 						Collectors.toCollection(ArrayList::new), 
 						assignedCandidates -> {
-							assignedCandidates.sort(new CandidatePairSimilarityComparator());
+							assignedCandidates.sort(CandidatePairWithSimilarity.BY_SIMILARITY);
 							return assignedCandidates; 
 						}	
 					)
@@ -249,7 +248,7 @@ public final class CandidatePairGrouper {
 		final Map<EncodedRecord, List<CandidatePairWithSimilarity>> nodes = this.groupSequential(side);
 		
 		for (final Entry<EncodedRecord, List<CandidatePairWithSimilarity>> entry : nodes.entrySet()){
-			Collections.sort(entry.getValue(), new CandidatePairSimilarityComparator());
+			Collections.sort(entry.getValue(), CandidatePairWithSimilarity.BY_SIMILARITY);
 		}
 		
 		System.out.println("Sequential " + side + ": " + nodes.size());

@@ -3,11 +3,32 @@ package dbs.pprl.toolbox.utils;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import dbs.pprl.toolbox.client.common.StringConverter;
+import dbs.pprl.toolbox.client.common.StringToObjectConverter;
 
+/**
+ * Class for dynamically creating objects with given class name and arguments.
+ * 
+ * @author mfranke
+ *
+ */
 public class ClassNameObjectConverter {
 
-	public static Object getObject(String dir, String className, String... params) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException{
+	/**
+	 * Creates an object of given class.
+	 * 
+	 * @param dir Package to search for class name.
+	 * @param className Name of the class.
+	 * @param params Arguments passed to the constructor.
+	 * @return An instance of the specified class with the given arguments.
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws InvocationTargetException
+	 * @throws ClassNotFoundException
+	 */
+	public static Object getObject(String dir, String className, String... params) 
+		throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException{
+		
 		final Class<?> clazz = Class.forName(dir + "." + className);
 		
 		final int arguments = params.length;
@@ -28,7 +49,7 @@ public class ClassNameObjectConverter {
 					final Object[] initargs = new Object[ctorTypes.length];
 					for (int i = 0; i < initargs.length; i++){
 						final Class<?> paramType = ctorTypes[i];
-						initargs[i] = StringConverter.convert(params[i], paramType);
+						initargs[i] = StringToObjectConverter.convert(params[i], paramType);
 					}
 					try{
 						return ctor.newInstance(initargs);

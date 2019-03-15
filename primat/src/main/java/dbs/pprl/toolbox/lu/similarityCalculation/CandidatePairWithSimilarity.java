@@ -12,6 +12,8 @@ import dbs.pprl.toolbox.lu.matching.EncodedRecord;
  */
 public class CandidatePairWithSimilarity extends CandidatePair{
 
+	public static final Comparator<CandidatePairWithSimilarity> BY_SIMILARITY = new CandidatePairSimilarityComparator(); 
+	
 	private double similarity;
 	
 	public CandidatePairWithSimilarity(){
@@ -53,10 +55,10 @@ public class CandidatePairWithSimilarity extends CandidatePair{
 		return builder.toString();
 	}	
 	
-	class CandidatePairSimilarityComparator implements Comparator<CandidatePairWithSimilarity>{
+	private static class CandidatePairSimilarityComparator implements Comparator<CandidatePairWithSimilarity>{
 		@Override
 		public int compare(CandidatePairWithSimilarity o1, CandidatePairWithSimilarity o2) {
-			return o1.getSimilarity().compareTo(o2.getSimilarity());
+			return o1.getSimilarity().compareTo(o2.getSimilarity()) * -1;
 		}
 	}
 }

@@ -64,7 +64,7 @@ public class CSVToEncodedRecordTransformer {
 	
 	private EncodedRecord transform(CSVRecord record){
 		final String id = record.get(ID_FIELD);
-    	final BitSet bitVector = BitSetUtils.fromBase64(record.get(BIT_VECTOR_FIELD));
+    	final BitSet bitVector = BitSetUtils.fromBase64LittleEndian(record.get(BIT_VECTOR_FIELD));
     	final List<BlockingKey<?>> blockingKeys = 
     			new ArrayList<BlockingKey<?>>(BLOCKING_FIELDS.length);
     	   	
@@ -76,7 +76,7 @@ public class CSVToEncodedRecordTransformer {
     		final boolean isBitVectorBK = blockingKeyType.equals(BitVectorBlockingKey.class.getSimpleName());
     		
     		final BlockingKey<?> bk = isBitVectorBK ? 
-    						new BitVectorBlockingKey(bkId, BitSetUtils.fromBase64(blockingKeyValue)) : 
+    						new BitVectorBlockingKey(bkId, BitSetUtils.fromBase64LittleEndian(blockingKeyValue)) : 
     						new StringBlockingKey(bkId, blockingKeyValue); 
     		
 

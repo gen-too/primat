@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import dbs.pprl.toolbox.lu.matching.EncodedRecord;
-import dbs.pprl.toolbox.lu.similarityCalculation.JaccardSimilarityCalculator;
+import dbs.pprl.toolbox.lu.similarityFunctions.JaccardSimilarity;
 
 public class ChildNode implements Node, Comparable<ChildNode> {
 	
@@ -51,8 +51,9 @@ public class ChildNode implements Node, Comparable<ChildNode> {
     	this.coveringRadius = coveringRadius;
     }
     
-    public double computeSimilarity(ChildNode other) {    	
-    	return JaccardSimilarityCalculator.calculateJaccardSimilarity(other.getFeatures(), this.features);
+    public double computeSimilarity(ChildNode other) { 
+    	final JaccardSimilarity jaccard = new JaccardSimilarity();
+    	return jaccard.calculateSimilarity(other.getFeatures(), this.features);
     }
 
     public double getAccumulatedDistance() {

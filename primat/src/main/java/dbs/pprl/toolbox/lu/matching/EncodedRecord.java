@@ -1,5 +1,6 @@
 package dbs.pprl.toolbox.lu.matching;
 
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 
@@ -17,15 +18,17 @@ public class EncodedRecord {
 	// 		 if so, we need the partyId to distinguish
 	//private String partyId
 	private String id;
-	private BitSet bitVector;
+	private List<BitSet> bitVectors;
 	private List<? extends BlockingKey<?>> blockingKeys;
 	
-	public EncodedRecord(){}
+	public EncodedRecord(String id){
+		this(id, null, null);
+	}
 	
-	public EncodedRecord(String id, BitSet bitVector, List<? extends BlockingKey<?>> blockingKeys) {
+	public EncodedRecord(String id, List<BitSet> bitVectors, List<? extends BlockingKey<?>> blockingKeys) {
 		super();
 		this.id = id;
-		this.bitVector = bitVector;
+		this.bitVectors = bitVectors;
 		this.blockingKeys = blockingKeys;
 	}
 	
@@ -69,7 +72,9 @@ public class EncodedRecord {
 		builder.append(id);
 		builder.append(", ");
 //		builder.append(", bitVector=");
-		builder.append(BitSetUtils.toBase64(bitVector));
+		for (final BitSet bs : this.bitVectors) {
+			builder.append(BitSetUtils.toBase64LittleEndian(bs));
+		}
 //		builder.append(", blockingKeys=");
 //		builder.append(blockingKeys);
 //		builder.append("]");
@@ -84,12 +89,17 @@ public class EncodedRecord {
 		this.id = id;
 	}
 	
-	public BitSet getBitVector() {
-		return bitVector;
+	public List<BitSet> getBitVectors() {
+		return bitVectors;
 	}
 	
 	public void setBitVector(BitSet bitVector) {
-		this.bitVector = bitVector;
+		this.bitVectors = new ArrayList<BitSet>();
+		this.bitVectors.add(bitVector);
+	}
+	
+	public void setBitVectors(List<BitSet> bitVectors) {
+		this.bitVectors = bitVectors;
 	}
 	
 	public List<? extends BlockingKey<?>> getBlockingKeys() {

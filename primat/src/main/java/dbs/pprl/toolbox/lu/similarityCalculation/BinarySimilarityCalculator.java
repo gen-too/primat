@@ -1,7 +1,9 @@
 package dbs.pprl.toolbox.lu.similarityCalculation;
 
 import java.math.BigDecimal;
+import java.util.BitSet;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,20 +11,24 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import dbs.pprl.toolbox.lu.blocking.CandidatePair;
 import dbs.pprl.toolbox.lu.evaluation.MetricFormat;
+import dbs.pprl.toolbox.lu.similarityFunctions.SimilarityFunction;
 
 /**
  * 
  * @author mfranke
  *
  */
-public abstract class BinarySimilarityCalculator extends SimilarityCalculationComponent{
+public class BinarySimilarityCalculator extends SimilarityCalculationComponent{
 	
-	protected BinarySimilarityCalculator(){
-		this(DEFAULT_PARALLEL_EXECUTION);
+	private SimilarityFunction simFunc;
+	
+	protected BinarySimilarityCalculator(SimilarityFunction simFunc){
+		this(simFunc, DEFAULT_PARALLEL_EXECUTION);
 	}
 	
-	protected BinarySimilarityCalculator(boolean parallelExecution){
+	protected BinarySimilarityCalculator(SimilarityFunction simFunc, boolean parallelExecution){
 		super(parallelExecution);
+		this.simFunc = simFunc;
 	}
 		
 	private void collectSimilarityStatistics(DescriptiveStatistics similarityStat){
@@ -89,5 +95,20 @@ public abstract class BinarySimilarityCalculator extends SimilarityCalculationCo
 	}
 	
 	
-	protected abstract double calculateSimilarity(CandidatePair candidatePair);	
+	protected double calculateSimilarity(CandidatePair candidatePair){
+		final List<BitSet> leftBitVectors = candidatePair.getLeftRecord().getBitVectors();
+		final List<BitSet> rightBitVectors = candidatePair.getRightRecord().getBitVectors();
+		
+		final DescriptiveStatistics aggSimilarity = new DescriptiveStatistics();
+		
+		for (int i = 0; i < leftBitVectors.size(); i++) {
+			final BitSet left = leftBitVectors.get(i);
+			final BitSet right = rightBitVectors.get(i);
+			
+			final double similarity = this.simFunc.calculateSimilarity(left, right);
+			aggSimilarity.addValue(similarity);
+		}
+		
+		return aggSimilarity.getMean();
+	}
 }

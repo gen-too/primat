@@ -1,11 +1,11 @@
 package dbs.pprl.toolbox.client.encoding;
 
-/**
- * 
- * @author mfranke
- *
- */
+import java.util.List;
+
+import dbs.pprl.toolbox.client.data.records.Record;
+import dbs.pprl.toolbox.client.data.records.EncodedRecord;
+
 public interface Encoder {
-	
-	public Object encode(Object record);
+
+	public List<EncodedRecord> encode(List<Record> records);
 }

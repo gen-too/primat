@@ -2,7 +2,7 @@ package dbs.pprl.toolbox.client.encoding;
 
 import java.util.Map;
 
-import dbs.pprl.toolbox.client.encoding.attributes.Attribute;
+import dbs.pprl.toolbox.client.data.attributes.Attribute;
 
 public class AttributeFunctionMapping<T> {
 

@@ -1,10 +1,9 @@
 package dbs.pprl.toolbox.client.encoding;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-import dbs.pprl.toolbox.client.encoding.attributes.AttributeType;
+import dbs.pprl.toolbox.client.data.attributes.AttributeType;
 
 public class ColumnAttributTypeMapping {
 
@@ -18,11 +17,11 @@ public class ColumnAttributTypeMapping {
 		this.mapping.put(idColumn, AttributeType.ID);
 	}
 		
-	private boolean isColumnMapped(int column){
+	public boolean isColumnMapped(int column){
 		return this.mapping.containsKey(column);
 	}
 	
-	public void setType(int column, AttributeType type){
+	public ColumnAttributTypeMapping setType(int column, AttributeType type){
 		if (type == AttributeType.ID){
 			throw new RuntimeException("AttributeColumnOverwriteException");
 		}
@@ -32,18 +31,19 @@ public class ColumnAttributTypeMapping {
 		}
 		
 		this.mapping.put(column, type);
+		return this;
 	}
 	
-	public void setTypeString(int column){
-		this.setType(column, AttributeType.STRING);
+	public ColumnAttributTypeMapping setTypeString(int column){
+		return this.setType(column, AttributeType.STRING);
 	}
 	
-	public void setTypeDate(int column){
-		this.setType(column, AttributeType.DATE);
+	public ColumnAttributTypeMapping setTypeDate(int column){
+		return this.setType(column, AttributeType.DATE);
 	}
 	
-	public void setTypeNumeric(int column){
-		this.setType(column, AttributeType.NUMERIC);
+	public ColumnAttributTypeMapping setTypeNumeric(int column){
+		return this.setType(column, AttributeType.NUMERIC);
 	}
 	
 	public AttributeType getType(int column){
@@ -57,10 +57,13 @@ public class ColumnAttributTypeMapping {
 	public Map<Integer, AttributeType> getMapping(){
 		return this.mapping;
 	}
-	
-	public Map<Integer, AttributeType> getMappingWithoutIdColumn(){
-		final Map<Integer, AttributeType> res = new HashMap<>(this.mapping);
-		res.remove(idColumn);
-		return res;
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(mapping.entrySet().toString());
+		return builder.toString();
 	}
+	
+	
 }

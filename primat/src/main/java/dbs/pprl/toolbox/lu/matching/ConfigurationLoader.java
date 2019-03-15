@@ -32,8 +32,8 @@ import dbs.pprl.toolbox.lu.evaluation.IdQualityEvaluator;
 import dbs.pprl.toolbox.lu.evaluation.QualityEvaluator;
 import dbs.pprl.toolbox.lu.matching.BasicMatcher.BasicMatcherBuilder;
 import dbs.pprl.toolbox.lu.postprocessing.Postprocessor;
-import dbs.pprl.toolbox.lu.similarityCalculation.JaccardSimilarityCalculator;
 import dbs.pprl.toolbox.lu.similarityCalculation.SimilarityCalculator;
+import dbs.pprl.toolbox.lu.similarityFunctions.JaccardSimilarity;
 
 public class ConfigurationLoader {
 	
@@ -58,12 +58,12 @@ public class ConfigurationLoader {
 	public static final String MS_INDEXER = "blocking.ms.indexer";
 	public static final String MS_DYNAMIC_PIVOT_SELECTOR = "blocking.ms.dynamicPivotSelector";
 	
-	public static final String SIMILARITY_CALCULATOR_PACKAGE = "dbs.pprl.toolbox.lu.similarityCalculation.";
+	public static final String SIMILARITY_FUNCTION_PACKAGE = "dbs.pprl.toolbox.lu.similarityFunction.";
 	public static final String POSTPROCESSOR_PACKAGE = "dbs.pprl.toolbox.lu.postprocessing.";
 	public static final String DISTANCE_FUNCTION_PACKAGE = "dbs.pprl.toolbox.lu.distanceFunctions.";
 		
 	public static final double DEFAULT_THRESHOLD = 0.8d;
-	public static final Class<?> DEFAULT_SIMILARITY_CALCULATOR = JaccardSimilarityCalculator.class;
+	public static final Class<?> DEFAULT_SIMILARITY_FUNCTION = JaccardSimilarity.class;
 
 	private final PropertiesConfiguration config;
 	
@@ -225,10 +225,10 @@ public class ConfigurationLoader {
 		final String simCalcString = this.config.getString(SIMILARITY_FUNCTION, null);
 		final Class<?> simCalcClass;
 		if (simCalcString == null || simCalcString.isEmpty()){
-			simCalcClass = DEFAULT_SIMILARITY_CALCULATOR;
+			simCalcClass = DEFAULT_SIMILARITY_FUNCTION;
 		}
 		else {
-			simCalcClass = Class.forName(SIMILARITY_CALCULATOR_PACKAGE + simCalcString);
+			simCalcClass = Class.forName(SIMILARITY_FUNCTION_PACKAGE + simCalcString);
 		}
 		final Constructor<?> simCalcCtor = simCalcClass.getConstructor();
 		return (SimilarityCalculator) simCalcCtor.newInstance();

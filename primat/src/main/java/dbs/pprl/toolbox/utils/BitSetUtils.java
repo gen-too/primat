@@ -3,6 +3,8 @@ package dbs.pprl.toolbox.utils;
 import java.util.Base64;
 import java.util.BitSet;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 
 /**
  * 
@@ -15,42 +17,31 @@ public final class BitSetUtils {
 		throw new RuntimeException();
 	}
 	
-	public static BitSet fromBase64(String string){
+	public static BitSet fromBase64LittleEndian(String string){
 		final byte[] bytes = Base64.getDecoder().decode(string);
 		return BitSet.valueOf(bytes);
-//		return fromByteArray(bytes);
 	}
 	
-	public static String toBase64(BitSet bitset){
+	public static String toBase64LittleEndian(BitSet bitset){
 		return Base64.getEncoder().encodeToString(bitset.toByteArray());
-//		return Base64.getEncoder().encodeToString(toByteArray(bitset));
+	}
+	
+	public static BitSet fromBase64BigEndian(String string){
+		final byte[] bytes = Base64.getDecoder().decode(string);
+		ArrayUtils.reverse(bytes);
+		return BitSet.valueOf(bytes);
+	}
+	
+	public static String toBase64BigEndian(BitSet bitset){
+		final byte[] byteArray = bitset.toByteArray();
+		ArrayUtils.reverse(byteArray);
+		return Base64.getEncoder().encodeToString(byteArray);
 	}
 	
 	
-	@Deprecated
-	public static byte[] toByteArray(BitSet bits) {
-		final byte[] bytes = new byte[(bits.length() + 7) / 8];
-	    for (int i = 0; i < bits.length(); i++) {
-	        if (bits.get(i)) {
-	            bytes[bytes.length-i/8-1] |= 1<<(i%8);
-	        }
-	    }
-	    return bytes;
-	}
 	
-	@Deprecated
-	public static BitSet fromByteArray(byte[] bytes) {
-        BitSet bits = new BitSet();
-        for (int i = 0; i < bytes.length * 8; i++) {
-            if ((bytes[i / 8] & (1 << (i % 8))) > 0) {
-                bits.set(i);
-            }
-        }
-        return bits;
-    }
-	
-	public static BitSet fromBinaryReverse(String binary) {
-	    final BitSet bitset = new BitSet(binary.length());
+	public static BitSet fromBinaryLittleEndian(String binary) {
+	    final BitSet bitset = new BitSet(binary.length()-1);
 	    for (int i = 0; i < binary.length(); i++) {
 	        if (binary.charAt(i) == '1') {
 	            bitset.set(i);
@@ -59,31 +50,7 @@ public final class BitSetUtils {
 	    return bitset;
 	}
 	
-	public static BitSet fromBinary(String binary) {
-	    final BitSet bitset = new BitSet(binary.length());
-	    for (int i = 0; i < binary.length(); i++) {
-	        if (binary.charAt(i) == '1') {
-	            bitset.set(i);
-	        }
-	    }
-	    return bitset;
-	}
-	
-	public static String toBinary(BitSet bitset){
-		StringBuilder result = new StringBuilder();
-		
-		for(int bitIndex = bitset.size(); bitIndex >= 0; bitIndex--){
-			if (bitset.get(bitIndex)){
-				result.append("1");
-			}
-			else{
-				result.append("0");
-			}
-		}
-		return result.toString();
-	}
-	
-	public static String toBinaryReverse(BitSet bitset){
+	public static String toBinaryLittleEndian(BitSet bitset){
 		StringBuilder result = new StringBuilder();
 		
 		for(int bitIndex = 0; bitIndex < bitset.size(); bitIndex++){
@@ -96,25 +63,47 @@ public final class BitSetUtils {
 		}
 		return result.toString();
 	}	
-
-	@Deprecated
-	public static BitSet from(String bits){		
-		final BitSet bitset = new BitSet(bits.length());
-		final int lastBitIndex = bits.length()-1;
+	
+	public static BitSet fromBinaryBigEndian(String binary) {		
+	    final BitSet bitset = new BitSet(binary.length()-1);
+	    for (int i = 0 ; i < binary.length(); i++) {
+	        if (binary.charAt(i) == '1') {
+	            final int pos = binary.length() - (i + 1);
+	            bitset.set(pos);
+	        }
+	    }
+	    return bitset;
+	}
+	
+	public static String toBinaryBigEndian(BitSet bitset){
+		StringBuilder result = new StringBuilder();
 		
-		for (int i = lastBitIndex; i >= 0; i--){
-			if(bits.charAt(i) == '1'){
-				bitset.set(lastBitIndex - i); 
+		for(int bitIndex = bitset.size()-1; bitIndex >= 0; bitIndex--){
+			if (bitset.get(bitIndex)){
+				result.append("1");
+			}
+			else{
+				result.append("0");
 			}
 		}
-		
-		return bitset;
+		return result.toString();
 	}
 	
 	public static BitSet and(BitSet first, BitSet second){	
 		if (first != null && second != null && first.size() == second.size()){
-			BitSet bitset = (BitSet) first.clone();
+			final BitSet bitset = (BitSet) first.clone();
 			bitset.and(second);
+			return bitset;
+		}
+		else{
+			return null;
+		}
+	}
+	
+	public static BitSet andNot(BitSet first, BitSet second){	
+		if (first != null && second != null && first.size() == second.size()){
+			final BitSet bitset = (BitSet) first.clone();
+			bitset.andNot(second);
 			return bitset;
 		}
 		else{
@@ -124,7 +113,7 @@ public final class BitSetUtils {
 	
 	public static BitSet or(BitSet first, BitSet second){	
 		if (first != null && second != null && first.size() == second.size()){
-			BitSet bitset = (BitSet) first.clone();
+			final BitSet bitset = (BitSet) first.clone();
 			bitset.or(second);
 			return bitset;
 		}

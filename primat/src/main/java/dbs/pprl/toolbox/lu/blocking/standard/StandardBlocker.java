@@ -15,7 +15,7 @@ import dbs.pprl.toolbox.lu.blocking.CandidatePair;
 import dbs.pprl.toolbox.lu.evaluation.MetricFormat;
 import dbs.pprl.toolbox.lu.matching.EncodedRecord;
 import dbs.pprl.toolbox.lu.similarityCalculation.CandidatePairWithSimilarity;
-import dbs.pprl.toolbox.lu.similarityCalculation.JaccardSimilarityCalculator;
+import dbs.pprl.toolbox.lu.similarityFunctions.JaccardSimilarity;
 
 /**
  * List of blocking keys is used. Logical OR (at least one common BK).
@@ -33,49 +33,7 @@ public class StandardBlocker extends BlockingComponent{
 		super(parallelExecution);
 	}
 	
-	
-	private void bla(List<EncodedRecord> recordsPartyA,
-			List<EncodedRecord> recordsPartyB){
-		System.out.println(System.currentTimeMillis());
-		final long numberOfRecordsPartyA = recordsPartyA.size();
-		final long numberOfRecordsPartyB = recordsPartyB.size();
-		final long sizeCartesianProduct = numberOfRecordsPartyA * numberOfRecordsPartyB;
 		
-		final Map<BlockingKey<?>, List<EncodedRecord>> blocksPartyA =
-				this.getBlocksParallel(recordsPartyA);
-		
-		final Map<BlockingKey<?>, List<EncodedRecord>> blocksPartyB =
-				this.getBlocksParallel(recordsPartyB);
-		
-		Set<CandidatePair> cands = new HashSet<>();
-		
-//		int i = 1;
-		for (Entry<BlockingKey<?>, List<EncodedRecord>> entry : blocksPartyA.entrySet()){
-//			System.out.println("At Block: " + i);
-			BlockingKey<?> bk = entry.getKey();
-			
-			List<EncodedRecord> recsA = entry.getValue();
-			
-			if (blocksPartyB.containsKey(bk)){
-				List<EncodedRecord> recsB = blocksPartyB.get(bk);
-				
-				List<CandidatePair> candsForBlock = new ArrayList<>(recsA.size() * recsB.size());
-				
-				for (EncodedRecord recA : recsA){
-					for (EncodedRecord recB : recsB){
-						candsForBlock.add(new CandidatePair(recA, recB));
-					}
-				}
-//				System.out.println(candsForBlock.size());
-				cands.addAll(candsForBlock);
-//				i++;
-			}
-		}
-		
-		System.out.println("Done Blocking Bla " + cands.size());
-		System.out.println(System.currentTimeMillis());
-	}
-	
 	@Override
 	protected Set<CandidatePair> getCandidatePairsConcrete(List<EncodedRecord> recordsPartyA,
 			List<EncodedRecord> recordsPartyB) {
@@ -173,7 +131,8 @@ public class StandardBlocker extends BlockingComponent{
 					for (final EncodedRecord leftRec : leftRecords){
 						for (final EncodedRecord rightRec : rightRecords){			
 							
-							final Double sim = JaccardSimilarityCalculator.calculateJaccardSimilarity(leftRec, rightRec);
+							JaccardSimilarity jaccard = new JaccardSimilarity();
+							final Double sim = jaccard.calculateSimilarity(leftRec, rightRec);
 							
 //							System.out.println(leftRec.getId() + " - " + rightRec.getId());
 //							if (leftRec.getId().equals(rightRec.getId())){

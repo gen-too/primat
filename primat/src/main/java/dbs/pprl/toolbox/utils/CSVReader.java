@@ -18,7 +18,7 @@ import org.apache.commons.csv.CSVRecord;
  */
 public class CSVReader {
 
-	public final CSVFormat CSV_FORMAT = CSVFormat.RFC4180;
+	public static final CSVFormat CSV_FORMAT = CSVFormat.RFC4180;
 	
 	private final CSVParser csvParser;
 	private final LinkedList<String> header;
@@ -39,10 +39,6 @@ public class CSVReader {
 	
 	public LinkedList<String> getHeader(){
 		return this.header;
-	}
-	
-	public int columns(){
-		return this.header.size();
 	}
 	
 	public List<CSVRecord> read() throws IOException{   
