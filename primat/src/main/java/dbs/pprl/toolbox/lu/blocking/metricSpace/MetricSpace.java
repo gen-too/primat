@@ -21,6 +21,8 @@ public class MetricSpace extends BlockingComponent{
 	private double threshold;
 	private DistanceFunction distanceFunction;
 	
+	public MetricSpace() {};
+	
 	public MetricSpace(StaticPivotSelector staticPivotSelector, IndexMethod indexer, double threshold, DistanceFunction distanceFunction){
 		this.staticPivotSelector = staticPivotSelector;
 		this.indexer = indexer;
@@ -116,4 +118,27 @@ public class MetricSpace extends BlockingComponent{
 		final BigDecimal reductionRatio = BigDecimal.ONE.subtract(proportion);
 		this.metrics.put(REDUCTION_RATIO, reductionRatio);
 	}
+	
+	@Override
+	public String toString() {
+		return "Metric Space";
+	}
+
+	public void setStaticPivotSelector(StaticPivotSelector staticPivotSelector) {
+		this.staticPivotSelector = staticPivotSelector;
+	}
+
+	public void setIndexer(IndexMethod indexer) {
+		this.indexer = indexer;
+	}
+
+	public void setThreshold(double threshold) {
+		this.threshold = threshold;
+	}
+
+	public void setDistanceFunction(DistanceFunction distanceFunction) {
+		this.distanceFunction = distanceFunction;
+	}
+	
+	
 }

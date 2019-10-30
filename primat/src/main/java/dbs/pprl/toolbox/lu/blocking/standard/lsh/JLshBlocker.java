@@ -99,4 +99,9 @@ public final class JLshBlocker extends StandardBlocker{
 		final BigDecimal time = determineRuntime(startTime, endTime);
 		this.metrics.put(TIME_LSH_KEY_GENERATION, time);
 	}
+	
+	@Override
+	public String toString() {
+		return "Jaccard LSH";
+	}
 }

@@ -67,4 +67,9 @@ public final class IdQualityEvaluator extends QualityEvaluationComponent {
 			.count();
 	}
 	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
+	
 }

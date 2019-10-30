@@ -216,4 +216,9 @@ public final class HLshBlocker extends StandardBlocker{
 		final BigDecimal time = determineRuntime(startTime, endTime);
 		this.metrics.put(TIME_LSH_KEY_GENERATION, time);
 	}
+	
+	@Override
+	public String toString() {
+		return "Hamming LSH";
+	}
 }
