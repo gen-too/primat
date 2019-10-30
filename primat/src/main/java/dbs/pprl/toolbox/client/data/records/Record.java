@@ -17,6 +17,17 @@ public class Record implements Printable{
 		this(null, new ArrayList<Attribute<?>>());
 	}
 	
+	public Record copy() {
+		final Record copy = new Record();
+		
+		for (final Attribute<?> attr : this.getAttributes()) {
+			
+			final Attribute<?> attrCopy = attr.newInstance();
+			copy.add(attrCopy);
+		}
+		return copy;
+	}
+	
 	public Record(IdAttribute id, List<Attribute<?>> attributes){
 		this.id = id;
 		this.attributes = attributes;
@@ -84,5 +95,5 @@ public class Record implements Printable{
 	@Override
 	public Iterable<?> getPrint() {
 		return this.attributes;
-	}
+	}	
 }

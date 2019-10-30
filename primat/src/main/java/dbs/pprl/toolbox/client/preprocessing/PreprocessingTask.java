@@ -2,14 +2,27 @@ package dbs.pprl.toolbox.client.preprocessing;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import dbs.pprl.toolbox.client.common.CSVInputFile;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Service;
+
 import dbs.pprl.toolbox.client.common.Task;
-import dbs.pprl.toolbox.client.common.config.ConfigLoaderPreprocessing;
+import dbs.pprl.toolbox.client.common.config.PreprocessingConfig;
 import dbs.pprl.toolbox.client.data.attributes.AttributeParseException;
 import dbs.pprl.toolbox.client.data.records.Record;
 import dbs.pprl.toolbox.client.preprocessing.preprocessors.Preprocessor;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldmerger.FieldMerger;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldmerger.MergeDefinition;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldnormalizer.FieldNormalizer;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldnormalizer.NormalizeDefinition;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldpruner.FieldPruner;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldpruner.PruneDefinition;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldsplitter.FieldSplitter;
+import dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldsplitter.SplitDefinition;
 
 /**
  * Class for executing a defined pre-processing workflow, i. e.,
@@ -17,41 +30,56 @@ import dbs.pprl.toolbox.client.preprocessing.preprocessors.Preprocessor;
  * @author mfranke
  *
  */
+@Service
+@Import(PreprocessingConfig.class)
 public class PreprocessingTask extends Task{
 	
-	public static final String CONFIG_FILE_NAME = "preprocessing.properties";
-	public static final String PATH = "/home/mfranke/workspace/toolbox-pprl/" + CONFIG_FILE_NAME;
 	public static final String TASK_NAME = "preproc";
 	
 	private final List<Preprocessor> preprocessors;
 	
-	public static PreprocessingTask fromConfig(String pathToConfig) throws Exception {
-		final ConfigLoaderPreprocessing confLoader = new ConfigLoaderPreprocessing(pathToConfig);
-		return confLoader.build();
+	@Autowired
+	public PreprocessingTask(PreprocessingConfig preprocessingConfig){
+		super(preprocessingConfig.getCsvInputFileConfig());
+		System.out.println("F: " + preprocessingConfig.getColumnsToPrune());
+//		System.out.println("F: " + preprocessingConfig.getSplite().get(0);
+//		System.out.println("F: " + Arrays.toString(preprocessingConfig.getMergee().get(0).getColumns()));
+
+		
+		this.preprocessors = new ArrayList<Preprocessor>();
+		
+		final PruneDefinition pruneDef = preprocessingConfig.getPruneDefinition();
+		final SplitDefinition splitDef = preprocessingConfig.getSplitDefinition();
+		final MergeDefinition mergeDef = preprocessingConfig.getMergeDefinition();
+		final NormalizeDefinition normDef = preprocessingConfig.getNormalizeDefinition();
+		
+		final FieldPruner fieldPruner = new FieldPruner(pruneDef);
+		final FieldSplitter fieldSplitter = new FieldSplitter(splitDef);
+		final FieldMerger fieldMerger = new FieldMerger(mergeDef);
+		final FieldNormalizer fieldNormalizer = new FieldNormalizer(normDef);
+		
+		this.preprocessors.add(fieldPruner);
+		this.preprocessors.add(fieldSplitter);
+		this.preprocessors.add(fieldMerger);
+		this.preprocessors.add(fieldNormalizer);
 	}
 		
-	public PreprocessingTask(CSVInputFile cSVInputFile){
-		super(cSVInputFile);
-		this.preprocessors = new ArrayList<Preprocessor>();
-	}
-	
-	public void addPreprocessor(Preprocessor... preprocessors){
-		for (final Preprocessor preprocessor : preprocessors){
-			this.preprocessors.add(preprocessor);
-		}
-	}
-	
-	public void addPreprocessor(List<Preprocessor> preprocessors){
-		for (final Preprocessor preprocessor : preprocessors){
-			this.preprocessors.add(preprocessor);
-		}
-	}
-	
 	@Override
 	public String getTaskName() {
 		return TASK_NAME;
 	}	
 	
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("PreprocessingTask [preprocessors=");
+		builder.append(preprocessors);
+		builder.append("]");
+		return builder.toString();
+	}
+
 	@Override
 	public void execute() throws IOException, AttributeParseException {
 		final List<Record> records = this.readFile();
@@ -64,57 +92,13 @@ public class PreprocessingTask extends Task{
 	}
 	
 	public static void main(String[] args) throws Exception{
+		final AnnotationConfigApplicationContext applicationContext = 
+        		new AnnotationConfigApplicationContext(PreprocessingTask.class);
 		
-		final PreprocessingTask preprocessingTask = PreprocessingTask.fromConfig(PATH);
-		preprocessingTask.execute();
-		
-		/*
-		// OR MANUAL SETUP LIKE
-//		-------------------------------------------------------------------
-		
-		final MergeDefinition mergeDef = new MergeDefinition();
-		mergeDef.setMerger(new Integer[]{3, 4}, new DefaultMerger(""));
-//		final FieldMerger merger = new FieldMerger(mergeDef);
-//		preprocessing.addPreprocessor(merger);
-		
-//		-------------------------------------------------------------------
-		
-		final SplitDefinition splitDef = new SplitDefinition();
-//		splitDef.setSplitter(4, new DotSplitter(3));
-		splitDef.setSplitter(3, new PositionSplitter(2));
-//		final FieldSplitter splitter = new FieldSplitter(splitDef);	
-//		preprocessing.addPreprocessor(splitter);
-		
-//		-------------------------------------------------------------------
-
-		final PruneDefinition pruneDef = new PruneDefinition();
-		pruneDef.add(4);
-		final FieldPruner pruner = new FieldPruner(pruneDef);
-		preprocessing.addPreprocessor(pruner);
-//		-------------------------------------------------------------------
-
-		final Normalizer standardStringNormalizer = new StandardStringNormalizer();
-//		final Normalizer zipNormalizer = new StandardNumberNormalizer();
-
-		final NormalizerChain cityNormalizer = new NormalizerChain();
-		cityNormalizer.add(standardStringNormalizer);
-		cityNormalizer.add(new SubstringNormalizer(0, 12));	
-		
-		final NormalizeDefinition norm = new NormalizeDefinition();
-//		norm.setNormalizer(1, standardStringNormalizer);
-//		norm.setNormalizer(2, standardStringNormalizer);
-//		norm.setNormalizer(3, zipNormalizer);
-//		norm.setNormalizer(4, cityNormalizer);
-//		norm.setNormalizer(5, new PunctuationRemover());
-//		norm.setNormalizer(1, standardStringNormalizer);
-//		norm.setNormalizer(2, standardStringNormalizer);
-//		norm.setNormalizer(3, standardStringNormalizer);
-		norm.setNormalizer(4, new PunctuationRemover());
-		
-		final FieldNormalizer normalizer = new FieldNormalizer(norm);
-		preprocessing.addPreprocessor(normalizer);
-//		-------------------------------------------------------------------
-		*/
+        final PreprocessingTask preprocessingTask = applicationContext.getBean(PreprocessingTask.class);
+        System.out.println(preprocessingTask);
+//        preprocessingTask.execute();        
+        applicationContext.close();
 	}
 
 }

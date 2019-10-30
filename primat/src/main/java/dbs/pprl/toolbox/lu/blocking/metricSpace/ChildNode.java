@@ -53,7 +53,7 @@ public class ChildNode implements Node, Comparable<ChildNode> {
     
     public double computeSimilarity(ChildNode other) { 
     	final JaccardSimilarity jaccard = new JaccardSimilarity();
-    	return jaccard.calculateSimilarity(other.getFeatures(), this.features);
+    	return jaccard.calculateSimilarity(other.getFeatures().getBitVectors().get(0), this.features.getBitVectors().get(0));
     }
 
     public double getAccumulatedDistance() {
@@ -85,7 +85,7 @@ public class ChildNode implements Node, Comparable<ChildNode> {
     }
     
     public double computeRadius(double threshold){
-    	final BitSet bs = this.getFeatures().getBitVector();
+    	final BitSet bs = this.getFeatures().getBitVectors().get(0);
     	final int card = bs.cardinality();
     	final int prefixLength = card - ((int) Math.ceil(threshold * card)) + 1;
     	final int pop = 2 * card + prefixLength;
@@ -98,7 +98,7 @@ public class ChildNode implements Node, Comparable<ChildNode> {
     }
     
     public int getPopCount() {
-    	return this.features.getBitVector().cardinality();
+    	return this.features.getBitVectors().get(0).cardinality();
     }
 
     public double getCoveringRadius() {

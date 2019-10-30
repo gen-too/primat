@@ -3,6 +3,8 @@ package dbs.pprl.toolbox.client.encoding.bloomfilter;
 import java.util.BitSet;
 import java.util.Set;
 
+import javax.management.RuntimeErrorException;
+
 
 public class BloomFilter {
 
@@ -32,6 +34,9 @@ public class BloomFilter {
 	public void setPosition(Integer pos){
 		if (pos < size){
 			this.bitset.set(pos);	
+		}
+		else {
+			throw new RuntimeException("WTF");
 		}
 	}
 	

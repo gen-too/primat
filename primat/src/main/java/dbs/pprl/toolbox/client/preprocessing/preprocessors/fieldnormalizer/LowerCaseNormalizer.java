@@ -13,4 +13,8 @@ public class LowerCaseNormalizer implements Normalizer{
 		return string.toLowerCase();
 	}
 
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 }

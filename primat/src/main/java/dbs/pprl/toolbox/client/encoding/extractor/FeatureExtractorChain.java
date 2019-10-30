@@ -25,6 +25,10 @@ public class FeatureExtractorChain extends FeatureExtractor{
 	public void add(FeatureExtractor func){
 		this.featureExtractors.add(func);
 	}
+	
+	public List<FeatureExtractor> getFeatureExtractors() {
+		return this.featureExtractors;
+	}
 
 	@Override
 	public LinkedHashSet<String> extract(Attribute<?> attr) {

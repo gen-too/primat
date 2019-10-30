@@ -3,36 +3,47 @@ package dbs.pprl.toolbox.client.encoding.bloomfilter;
 import java.util.HashSet;
 import java.util.Set;
 
+import dbs.pprl.toolbox.client.encoding.bloomfilter.HashUtils.HashingAlgorithm;
+
 public class DoubleHashing extends HashingMethod{
 
+	private HashingAlgorithm hash1;
+	private HashingAlgorithm hash2;
+	private String seed;
+	
 	public DoubleHashing(int bfSize) {
+		this(bfSize, "", HashingAlgorithm.SHA1, HashingAlgorithm.MD5);
+	}
+	
+	public DoubleHashing(int bfSize, String seed, HashingAlgorithm hash1, HashingAlgorithm hash2) {
 		super(bfSize);
+		this.seed = seed;
+		this.hash1 = hash1;
+		this.hash2 = hash2;	
 	}
 	
 	@Override
 	public Set<Integer> hash(String element, int hashFunctions) {
-		final String saltedInput = element + this.salt;
+		final String input = element + this.salt;
+		
+		final int hash1 = this.calculateHash1(input);
+		final int hash2 = this.calculateHash2(input);		
+	
+		
 		final Set<Integer> positions = new HashSet<>();
-
 		for (int hashNumber = 0; hashNumber < hashFunctions; hashNumber++){
-			final int position = this.hashElement(saltedInput, hashNumber);
+			final int position = Math.abs(hash1 + hashNumber * hash2) % this.bfSize;
 			positions.add(position);
 		}
 		
 		return positions;
 	}
-
-
-	private int hashElement(String element, int hashNumber){
-		return (Math.abs(this.hash1(element) + hashNumber * this.hash2(element))) % this.bfSize;
-	}
 	
-	private int hash1(String element){
-		return Math.abs(HashUtils.getMD5(element));
+	private int calculateHash1(String element){
+		return Math.abs(HashUtils.getHashInt(element + this.seed, this.hash1));
 	}
 		
-	private int hash2(String element){
-		return Math.abs(HashUtils.getSHA(element));
+	private int calculateHash2(String element){
+		return Math.abs(HashUtils.getHashInt(element + this.seed, this.hash2));
 	}
-
 }

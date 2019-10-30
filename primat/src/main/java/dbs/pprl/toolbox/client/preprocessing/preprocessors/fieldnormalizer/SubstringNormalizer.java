@@ -9,11 +9,20 @@ package dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldnormalizer;
  */
 public class SubstringNormalizer implements Normalizer{
 
-	private final int start;
-	private final int end;
+	private int start;
+	private int end;
+	
 	
 	public SubstringNormalizer(int start, int end) {
 		this.start = start;
+		this.end = end;
+	}
+	
+	public void setStart(int start) {
+		this.start = start;
+	}
+	
+	public void setEnd(int end) {
 		this.end = end;
 	}
 	
@@ -26,5 +35,10 @@ public class SubstringNormalizer implements Normalizer{
 		}
 		
 		return string.substring(start, end);		
+	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName() + "(" + this.start + "," + this.end + ")";
 	}
 }

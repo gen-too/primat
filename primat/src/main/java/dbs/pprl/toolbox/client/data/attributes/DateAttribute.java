@@ -1,16 +1,15 @@
 package dbs.pprl.toolbox.client.data.attributes;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
-public class DateAttribute extends Attribute<Date>{
+public class DateAttribute extends Attribute<LocalDate>{
 
 	public DateAttribute(){
 		super();
 	}
 	
-	public DateAttribute(Date date){
+	public DateAttribute(LocalDate date){
 		super(date);
 	}
 	
@@ -21,13 +20,18 @@ public class DateAttribute extends Attribute<Date>{
 		}
 		else{
 			try {
-				final DateFormat f = DateFormat.getDateInstance();
-				final Date date = f.parse(value);
+				LocalDate date = LocalDate.parse(value);
+				
 				this.value = date;
 			} 
-			catch (ParseException e) {
+			catch (DateTimeParseException e) {
 				throw new AttributeParseException();
 			}
 		}
+	}
+
+	@Override
+	public DateAttribute newInstance() {
+		return new DateAttribute(this.getValue());
 	}
 }

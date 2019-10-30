@@ -40,7 +40,7 @@ public class RoutingNode implements Node, Comparable<RoutingNode>{
     }
     
     public int getPopCount() {
-    	return this.features.getBitVector().cardinality();
+    	return this.features.getBitVectors().get(0).cardinality();
     }
 
     public double getCoveringRadius() {

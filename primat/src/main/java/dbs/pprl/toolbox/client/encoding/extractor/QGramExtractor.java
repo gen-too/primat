@@ -59,5 +59,9 @@ public class QGramExtractor extends FeatureExtractor{
 		
 		return tokens;		
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 }

@@ -3,6 +3,7 @@ package dbs.pprl.toolbox.lu.similarityFunctions;
 import java.util.BitSet;
 
 import dbs.pprl.toolbox.utils.BitSetUtils;
+import dbs.pprl.toolbox.utils.StringUtils;
 
 public abstract class SimilarityFunction {
 	
@@ -32,4 +33,9 @@ public abstract class SimilarityFunction {
 	}
 	
 	protected abstract double calculateSim(BitSet leftBitVector, BitSet rightBitVector);
+	
+	@Override
+	public String toString() {
+		return StringUtils.upperCamelCaseToTitleCase(this.getClass().getSimpleName());
+	}
 }

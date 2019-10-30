@@ -15,4 +15,9 @@ public final class StandardNumberNormalizer implements Normalizer{
 	public String normalize(String string) {
 		return this.normalizer.normalize(string);
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 }

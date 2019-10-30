@@ -24,6 +24,11 @@ public class NormalizerChain implements Normalizer{
 		this.normalizer = Arrays.asList(normalizer);
 	}
 	
+	public NormalizerChain(Collection<Normalizer> normalizer) {
+		this.normalizer = new ArrayList<>(normalizer);
+	}
+	
+
 	public void add(Normalizer normalizer){
 		this.normalizer.add(normalizer);
 	}

@@ -14,4 +14,9 @@ public class StringAttribute extends Attribute<String>{
 	public void setValue(String value) {
 		this.value = value;		
 	}
+
+	@Override
+	public StringAttribute newInstance() {
+		return new StringAttribute(this.getValue());
+	}
 }

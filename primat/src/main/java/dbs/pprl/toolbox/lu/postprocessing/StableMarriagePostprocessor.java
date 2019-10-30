@@ -136,6 +136,11 @@ public final class StableMarriagePostprocessor extends PostprocessorComponent{
 		
 		return cleanedMatches;
 	}
+	
+	@Override
+	public String toString() {
+		return "Stable Marriage (Stable Matching)";
+	}
 	/*
 	private Set<CandidatePairWithSimilarity> runStableMarriageLeftSideProposes(){
 		final List<Entry<EncodedRecord, List<CandidatePairWithSimilarity>>> freeLeftNodesEntry = 

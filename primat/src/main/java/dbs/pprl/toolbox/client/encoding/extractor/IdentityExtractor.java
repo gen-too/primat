@@ -13,5 +13,9 @@ public class IdentityExtractor extends FeatureExtractor{
 		result.add(value);
 		return result;
 	}
-
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 }

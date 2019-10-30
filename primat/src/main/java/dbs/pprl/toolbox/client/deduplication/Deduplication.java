@@ -3,15 +3,15 @@ package dbs.pprl.toolbox.client.deduplication;
 import java.io.IOException;
 import java.util.List;
 
-import dbs.pprl.toolbox.client.common.CSVInputFile;
 import dbs.pprl.toolbox.client.common.Task;
+import dbs.pprl.toolbox.client.common.config.CSVInputFileConfig;
 import dbs.pprl.toolbox.client.data.attributes.AttributeParseException;
 import dbs.pprl.toolbox.client.data.records.Record;
 
 public class Deduplication extends Task{
 
-	public Deduplication(CSVInputFile cSVInputFile) {
-		super(cSVInputFile);
+	public Deduplication(CSVInputFileConfig csvInputFileConfig) {
+		super(csvInputFileConfig);
 	}
 
 	public static final String TASK = "dedup";

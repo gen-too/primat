@@ -11,16 +11,15 @@ import dbs.pprl.toolbox.client.data.attributes.Attribute;
 import dbs.pprl.toolbox.client.data.attributes.AttributeParseException;
 import dbs.pprl.toolbox.client.data.attributes.AttributeType;
 import dbs.pprl.toolbox.client.data.records.Record;
-import dbs.pprl.toolbox.client.encoding.ColumnAttributTypeMapping;
 
 public class CSVRecordWrapper {
 
-	private final ColumnAttributTypeMapping attrMap;
+	private final Map<Integer, AttributeType> attrMap;
 	
-	public CSVRecordWrapper(ColumnAttributTypeMapping attrMap){
+	public CSVRecordWrapper(Map<Integer, AttributeType> attrMap){
 		this.attrMap = attrMap;
 	}
-	
+		
 	public List<Record> from(List<CSVRecord> records) throws AttributeParseException{
 		final List<Record> result = new ArrayList<Record>(records.size());
 
@@ -32,11 +31,10 @@ public class CSVRecordWrapper {
 		return result;
 	}
 	
-	public Record from(CSVRecord record) throws AttributeParseException{
+	private Record from(CSVRecord record) throws AttributeParseException{
 		final Record transformedRecord = new Record();
-		final Map<Integer, AttributeType> mapping = this.attrMap.getMapping();
 		
-		for (final Entry<Integer, AttributeType> mappingEntry : mapping.entrySet()){
+		for (final Entry<Integer, AttributeType> mappingEntry : this.attrMap.entrySet()){
 			final int column = mappingEntry.getKey();
 			final AttributeType attrType = mappingEntry.getValue();
 			final String attributeValue = record.get(column);
@@ -47,5 +45,4 @@ public class CSVRecordWrapper {
 		
     	return transformedRecord;
 	}
-	
 }

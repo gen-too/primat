@@ -86,4 +86,9 @@ public final class MaxBothPostprocessor extends PostprocessorComponent{
 		System.out.println("Merged " + result.size());
 		return result;	
 	}
+	
+	@Override
+	public String toString() {
+		return "Max1-both (Symetric Best Match)";
+	}
 }

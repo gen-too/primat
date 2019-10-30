@@ -20,4 +20,9 @@ public abstract class StringMapper implements Normalizer{
 		}
 		return string;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 }

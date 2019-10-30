@@ -14,7 +14,7 @@ public class JaccardSimilarity extends SimilarityFunction{
 	// Jaccard = Dice / (2 - Dice)
 	// Metric
 	@Override
-	public double calculateSim(BitSet left, BitSet right) {
+	protected double calculateSim(BitSet left, BitSet right) {
 		final int card1 = left.cardinality();
 		final int card2 = right.cardinality();
 		final int and = BitSetUtils.and(left, right).cardinality();	

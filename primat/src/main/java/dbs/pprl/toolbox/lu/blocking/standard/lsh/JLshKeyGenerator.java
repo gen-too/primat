@@ -76,14 +76,14 @@ public final class JLshKeyGenerator{
 		records
 			.parallelStream()
 			.forEach(record -> {
-				final List<StringBlockingKey> lshKeys = this.buildJLshKeys(record.getBitVector()); 
+				final List<StringBlockingKey> lshKeys = this.buildJLshKeys(record.getBitVectors().get(0)); 
 				record.setBlockingKeys(lshKeys);		
 			});
 	}
 	
 	private void buildJLshKeysSequential(List<EncodedRecord> records){
 		for (final EncodedRecord record : records){
-			final List<StringBlockingKey> lshKeys = this.buildJLshKeys(record.getBitVector()); 
+			final List<StringBlockingKey> lshKeys = this.buildJLshKeys(record.getBitVectors().get(0)); 
 			record.setBlockingKeys(lshKeys);	
 		}
 	}

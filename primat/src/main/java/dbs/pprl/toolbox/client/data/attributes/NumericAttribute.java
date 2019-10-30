@@ -9,7 +9,7 @@ public class NumericAttribute extends Attribute<Number>{
 		super();
 	}
 	
-	public NumericAttribute(Integer value){
+	public NumericAttribute(Number value){
 		super(value);
 	}
 	
@@ -27,5 +27,10 @@ public class NumericAttribute extends Attribute<Number>{
 		else {
 			this.value = null;
 		}
+	}
+
+	@Override
+	public NumericAttribute newInstance() {
+		return new NumericAttribute(this.getValue());
 	}
 }

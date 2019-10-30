@@ -285,4 +285,9 @@ public final class HungarianPostprocessor extends PostprocessorComponent{
 		
 		return classifiedMatches;
 	}
+	
+	@Override
+	public String toString() {
+		return "Hungarian Algorithm (Maximum Weight Matching)";
+	}
 }

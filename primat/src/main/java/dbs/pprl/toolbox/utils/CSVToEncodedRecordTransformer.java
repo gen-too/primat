@@ -82,7 +82,9 @@ public class CSVToEncodedRecordTransformer {
 
     		blockingKeys.add(bk);
     	}
+    	final List<BitSet> bitVectorList = new ArrayList<>();
+    	bitVectorList.add(bitVector);
     	
-    	return new EncodedRecord(id, bitVector, blockingKeys);
+    	return new EncodedRecord(id, bitVectorList, blockingKeys);
 	}
 }

@@ -131,8 +131,11 @@ public class StandardBlocker extends BlockingComponent{
 					for (final EncodedRecord leftRec : leftRecords){
 						for (final EncodedRecord rightRec : rightRecords){			
 							
+							final BitSet leftBs = leftRec.getBitVectors().get(0);
+							final BitSet rightBs = rightRec.getBitVectors().get(0);
+							
 							JaccardSimilarity jaccard = new JaccardSimilarity();
-							final Double sim = jaccard.calculateSimilarity(leftRec, rightRec);
+							final Double sim = jaccard.calculateSimilarity(leftBs, rightBs);
 							
 //							System.out.println(leftRec.getId() + " - " + rightRec.getId());
 //							if (leftRec.getId().equals(rightRec.getId())){
@@ -217,6 +220,7 @@ public class StandardBlocker extends BlockingComponent{
 	
 	
 	
+	@SuppressWarnings("unused")
 	private MultiValuedMap<EncodedRecord, EncodedRecord>  buildCandidatePairsSequentialNewScheme(
 			MultiValuedMap<BlockingKey<?>, EncodedRecord> leftSide,
 			MultiValuedMap<BlockingKey<?>, EncodedRecord> rightSide){

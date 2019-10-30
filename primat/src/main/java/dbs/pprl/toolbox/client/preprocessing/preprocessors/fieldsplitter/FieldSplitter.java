@@ -23,7 +23,9 @@ public class FieldSplitter implements Preprocessor{
 		for (final Record rec : records){
 			this.splitAttrForRecord(rec);
 		}
-		this.updateHeader(header);
+		if (header != null) {
+			this.updateHeader(header);
+		}
 	}
 	
 	private void splitAttrForRecord(Record record){

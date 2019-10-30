@@ -22,11 +22,11 @@ public class BinarySimilarityCalculator extends SimilarityCalculationComponent{
 	
 	private SimilarityFunction simFunc;
 	
-	protected BinarySimilarityCalculator(SimilarityFunction simFunc){
+	public BinarySimilarityCalculator(SimilarityFunction simFunc){
 		this(simFunc, DEFAULT_PARALLEL_EXECUTION);
 	}
 	
-	protected BinarySimilarityCalculator(SimilarityFunction simFunc, boolean parallelExecution){
+	public BinarySimilarityCalculator(SimilarityFunction simFunc, boolean parallelExecution){
 		super(parallelExecution);
 		this.simFunc = simFunc;
 	}

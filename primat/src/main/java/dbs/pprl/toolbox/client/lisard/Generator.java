@@ -311,6 +311,8 @@ public class Generator {
 		return copies;
 	}
 	
+	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException{
 		final List<Attribute> attributesToGenerate = new ArrayList<>();
 				

@@ -3,8 +3,6 @@ package dbs.pprl.toolbox.utils;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import dbs.pprl.toolbox.client.common.StringToObjectConverter;
-
 /**
  * Class for dynamically creating objects with given class name and arguments.
  * 
@@ -42,6 +40,7 @@ public class ClassNameObjectConverter {
 			for (final Constructor<?> ctor : ctors){
 				final Class<?>[] ctorTypes = ctor.getParameterTypes();
 				final int ctorArgs = ctorTypes.length;
+
 				if (ctorArgs != arguments){
 					continue;
 				}

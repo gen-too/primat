@@ -42,4 +42,22 @@ public class BlockingKey {
 		}
 		return result.toString();
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("BK [");
+		for (final Pair<Integer, BlockingFunction> pair : this.columnFunctionMapping) {
+			builder.append(pair.getKey());
+			builder.append(":");
+			builder.append(pair.getValue().getClass().getSimpleName());
+			builder.append(", ");
+		}
+		builder.deleteCharAt(builder.length()-1);
+		builder.deleteCharAt(builder.length()-1);
+		builder.append("]");
+		return builder.toString();
+	}
+	
+	
 }

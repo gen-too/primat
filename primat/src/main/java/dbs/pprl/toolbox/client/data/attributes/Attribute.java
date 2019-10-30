@@ -7,6 +7,9 @@ public abstract class Attribute<T> {
 		
 	public Attribute(){}
 	
+	public abstract Attribute<?> newInstance();
+	
+	
 	public Attribute(T value){
 		this.value = value;
 	}

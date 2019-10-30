@@ -20,5 +20,10 @@ public abstract class StringReplacer implements Normalizer{
 		}
 		return result;
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 
 }

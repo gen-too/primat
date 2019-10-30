@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- style-sheet can also be set programatically -->
+
+<BorderPane prefHeight="708.0" prefWidth="997.0" stylesheets="@/gui/style/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.MainController">
+   <center>
+      <TabPane id="tab-pane-lu" fx:id="tabPane" disable="true" prefHeight="443.0" prefWidth="988.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="180.0" tabMaxWidth="75.0" tabMinHeight="180.0" tabMinWidth="75.0" BorderPane.alignment="CENTER">
+        <tabs>
+            <Tab fx:id="selectionTabPaneTab">
+              <content>
+                <fx:include fx:id="selectionTab" source="SelectionTab.fxml" />
+              </content>
+               <graphic>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                 <image>
+                                    <Image url="@../image/pencil.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <Label rotate="90.0" text="Selection" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+               </graphic>
+            </Tab>
+          <Tab fx:id="dataCleaningTabPaneTab" disable="true">
+            <content>
+              <fx:include fx:id="dataCleaningTab" source="DataCleaningTab.fxml" />
+            </content>
+               <graphic>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                 <image>
+                                    <Image url="@../image/input-checked.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <Label rotate="90.0" text="Data Cleaning" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+               </graphic>
+          </Tab>
+          <Tab fx:id="encodingTabPaneTab" disable="true">
+            <content>
+              <fx:include fx:id="encodingTab" source="EncodingTab.fxml" />
+            </content>
+               <graphic>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                 <image>
+                                    <Image url="@../image/lock.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <Label rotate="90.0" text="Encoding" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+               </graphic>
+          </Tab>
+            <Tab disable="true">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+               <graphic>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                     <children>
+                        <Group>
+                           <children>
+                              <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+                                 <image>
+                                    <Image url="@../image/archive.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Group>
+                        <Group>
+                           <children>
+                              <Label rotate="90.0" text="Indexing" />
+                           </children>
+                        </Group>
+                     </children>
+                  </VBox>
+               </graphic>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+   <top>
+      <fx:include fx:id="menuBar" source="MenuBar.fxml" />
+   </top>
+   <bottom>
+      <fx:include fx:id="dataPane" source="DataPane.fxml" />
+   </bottom>
+</BorderPane>

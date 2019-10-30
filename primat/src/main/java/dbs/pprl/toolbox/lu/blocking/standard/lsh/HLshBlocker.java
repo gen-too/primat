@@ -150,7 +150,7 @@ public final class HLshBlocker extends StandardBlocker{
 					.parallelStream())
 			.flatMapToInt(record -> 
 				record
-					.getBitVector()
+					.getBitVectors().get(0)
 					.stream()
 					.parallel())
 			.boxed()
@@ -203,7 +203,7 @@ public final class HLshBlocker extends StandardBlocker{
 	}	
 	
 	private void updateBitPositions(Map<Integer, Long> bitPositions, EncodedRecord record){
-		final BitSet bitVector = record.getBitVector();
+		final BitSet bitVector = record.getBitVectors().get(0);
 		for (int i = bitVector.nextSetBit(0); i >= 0; i = bitVector.nextSetBit(i+1)) {		    
 		     bitPositions.merge(i, 1L, Long::sum);
 		     if (i == Integer.MAX_VALUE) {

@@ -41,4 +41,11 @@ public abstract class BasicBloomFilterEncoder implements Encoder{
 	
 	protected abstract EncodedRecord encode(PreparedRecord record);
 	
+	public int getBloomFilterLength() {
+		return this.bfLength;
+	}
+	
+	public HashingMethod getHashingMethod() {
+		return this.bfHasher;
+	}
 }

@@ -34,6 +34,5 @@ public class AccentRemover extends RegexReplacer{
                 decomposed.insert(i, 'l');
             }
         }
-    }
-	
+    }	
 }

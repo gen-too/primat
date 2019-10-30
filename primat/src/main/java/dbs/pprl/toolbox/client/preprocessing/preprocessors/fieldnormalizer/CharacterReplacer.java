@@ -29,5 +29,10 @@ public abstract class CharacterReplacer implements Normalizer{
 		
 		return result.toString();
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 
 }

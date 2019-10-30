@@ -13,4 +13,9 @@ public class UpperCaseNormalizer implements Normalizer{
 	public String normalize(String string) {
 		return string.toUpperCase();
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 }

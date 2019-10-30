@@ -22,5 +22,4 @@ public interface Preprocessor {
 	 * @throws AttributeParseException 
 	 */
 	public void apply(List<Record> records, LinkedList<String> header) throws AttributeParseException;
-
 }

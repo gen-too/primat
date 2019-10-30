@@ -18,7 +18,13 @@ public class RandomHashing extends HashingMethod {
 	
 	public RandomHashing(int bfSize, String key){
 		super(bfSize);
-		this.key = key;
+		
+		if (key != null && !key.equals("")) {
+			this.key = key;
+		}
+		else {
+			this.key = DEFAULT_KEY;
+		}
 	}
 	
 	@Override
@@ -41,7 +47,9 @@ public class RandomHashing extends HashingMethod {
 			return new Random(hashedToken);
 		} 
 		catch (Exception e) {
-			return new Random(42);
+			e.printStackTrace();
+			return null;
+//			return new Random(42);
 		}		
 		
 	}

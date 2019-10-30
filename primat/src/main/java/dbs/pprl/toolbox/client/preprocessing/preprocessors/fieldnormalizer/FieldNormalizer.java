@@ -19,11 +19,15 @@ public class FieldNormalizer implements Preprocessor {
 		this.normalization = normalization;
 	}
 	
-	@Override
-	public void apply(List<Record> records, final LinkedList<String> header) throws AttributeParseException {
+	public void apply(List<Record> records) throws AttributeParseException {
 		for (final Record rec : records){
 			this.normalizeRecord(rec);
 		}	
+	}
+	
+	@Override
+	public void apply(List<Record> records, final LinkedList<String> header) throws AttributeParseException {
+		this.apply(records);
 	}
 	
 	private void normalizeRecord(Record record) throws AttributeParseException{

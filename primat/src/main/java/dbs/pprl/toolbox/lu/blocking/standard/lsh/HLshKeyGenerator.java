@@ -112,14 +112,14 @@ public final class HLshKeyGenerator{
 		records
 			.parallelStream()
 			.forEach(record -> {
-				final List<BitVectorBlockingKey> lshKeys = this.buildHLshKeys(record.getBitVector()); 
+				final List<BitVectorBlockingKey> lshKeys = this.buildHLshKeys(record.getBitVectors().get(0)); 
 				record.setBlockingKeys(lshKeys);		
 			});
 	}
 	
 	private void buildHLshKeysSequential(List<EncodedRecord> records){
 		for (final EncodedRecord record : records){
-			final List<BitVectorBlockingKey> lshKeys = this.buildHLshKeys(record.getBitVector()); 
+			final List<BitVectorBlockingKey> lshKeys = this.buildHLshKeys(record.getBitVectors().get(0)); 
 			record.setBlockingKeys(lshKeys);	
 		}
 	}

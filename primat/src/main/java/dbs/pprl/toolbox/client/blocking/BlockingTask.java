@@ -1,50 +1,46 @@
 package dbs.pprl.toolbox.client.blocking;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
+import org.springframework.stereotype.Service;
+
 import dbs.pprl.toolbox.client.blocking.methods.BlockingKey;
 import dbs.pprl.toolbox.client.blocking.methods.StandardBlocker;
-import dbs.pprl.toolbox.client.common.CSVInputFile;
 import dbs.pprl.toolbox.client.common.Task;
-import dbs.pprl.toolbox.client.common.config.ConfigLoaderBlocking;
+import dbs.pprl.toolbox.client.common.config.BlockingConfig;
 import dbs.pprl.toolbox.client.data.attributes.AttributeParseException;
 import dbs.pprl.toolbox.client.data.attributes.StringAttribute;
 import dbs.pprl.toolbox.client.data.records.Record;
 
+@Service
+@Import(BlockingConfig.class)
 public class BlockingTask extends Task{
 
 	public static final String TASK_NAME = "bk";
-	public static final String CONFIG_FILE_NAME = "blocking.properties";
-	public static final String PATH = "/home/mfranke/workspace/toolbox-pprl/" + CONFIG_FILE_NAME;
 	
 	final List<BlockingKey> bkList;
 	
-	public static BlockingTask fromConfig(String pathToConfig) throws Exception {
-		final ConfigLoaderBlocking confLoader = new ConfigLoaderBlocking(pathToConfig);
-		return confLoader.build();
+	@Autowired
+	public BlockingTask(BlockingConfig blockingConfig) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException{
+		super(blockingConfig.getCsvInputFileConfig());
+		System.out.println(blockingConfig.getCsvInputFileConfig().getColumnType());
+		System.out.println(blockingConfig.getCsvInputFileConfig().getFile());
+		System.out.println(blockingConfig.getCsvInputFileConfig().getHeader());
+		this.bkList = blockingConfig.getBlockingKeys();
 	}
 	
-	public BlockingTask(CSVInputFile cSVInputFile){
-		super(cSVInputFile);
-		this.bkList = new ArrayList<BlockingKey>();
-	}
-
-	public void addBlocker(BlockingKey... bks){
-		for (final BlockingKey bk : bks){
-			bkList.add(bk);
-		}
+	@Override
+	public String toString() {
+		return this.csvInputFile.getFile() + ", " + this.bkList;
 	}
 	
-	public void addBlocker(List<BlockingKey> bks){
-		for (final BlockingKey bk : bks){
-			bkList.add(bk);
-		}
-	}
-		
 	@Override
 	public String getTaskName() {
 		return TASK_NAME;
@@ -74,21 +70,4 @@ public class BlockingTask extends Task{
 		}
 		this.writeFile(result);
 	}
-	
-	public static void main(String[] args) throws Exception{
-		final BlockingTask blockingTask = BlockingTask.fromConfig(PATH);
-		blockingTask.execute();
-
-		/* MANUAL DEFINITION
-		// How to construct from config file?
-		final BlockingKeyDefinition bk1Def = new BlockingKeyDefinition();
-		bk1Def.set(2, new SoundexBlockingFunction());
-		
-		final BlockingKeyDefinition bk2Def = new BlockingKeyDefinition();
-		bk2Def.set(1, new SoundexBlockingFunction());
-		bk2Def.set(2, new SoundexBlockingFunction());
-		
-		blocking.addBlocker(bk1Def, bk2Def);
-		*/	
-	}	
 }

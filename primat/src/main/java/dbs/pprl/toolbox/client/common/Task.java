@@ -6,17 +6,17 @@ import java.util.List;
 
 import org.apache.commons.csv.CSVRecord;
 
+import dbs.pprl.toolbox.client.common.config.CSVInputFileConfig;
 import dbs.pprl.toolbox.client.data.CSVRecordWrapper;
 import dbs.pprl.toolbox.client.data.attributes.AttributeParseException;
 import dbs.pprl.toolbox.client.data.records.Record;
 import dbs.pprl.toolbox.client.data.records.EncodedRecord;
-import dbs.pprl.toolbox.client.encoding.ColumnAttributTypeMapping;
 import dbs.pprl.toolbox.utils.CSVReader;
 import dbs.pprl.toolbox.utils.CSVWriter;
 
 public abstract class Task {
 
-	protected final CSVInputFile csvInputFile;
+	protected final CSVInputFileConfig csvInputFile;
 	protected LinkedList<String> inputFileHeader;
 	
 	/**
@@ -25,21 +25,21 @@ public abstract class Task {
 	 * @param hasHeader boolean value to indicate if csv-file contains a header, e. g., schema information
 	 * @param idColumn specifies to column where the record identifier is placed
 	 */
-	public Task(CSVInputFile csvInputFile) {
+	public Task(CSVInputFileConfig csvInputFile) {
 		this.csvInputFile = csvInputFile;
 		this.inputFileHeader = null;
 	}
 	
+	
 	protected List<Record> readFile() throws IOException, AttributeParseException{
-		final String pathToFile = this.csvInputFile.getPathToFile();
-		final boolean hasHeader = this.csvInputFile.hasHeader();
-		final ColumnAttributTypeMapping attrMapping = this.csvInputFile.getColumnAttributTypeMapping();
+		final String pathToFile = this.csvInputFile.getFile();
+		final boolean hasHeader = this.csvInputFile.getHeader();
 		
 		final CSVReader csvReader = new CSVReader(pathToFile, hasHeader);
 		this.inputFileHeader = csvReader.getHeader();
 		final List<CSVRecord> csvRecords = csvReader.read();
-		
-		final CSVRecordWrapper wrapper = new CSVRecordWrapper(attrMapping);
+
+		final CSVRecordWrapper wrapper = new CSVRecordWrapper(this.csvInputFile.getColumnType());
 		return wrapper.from(csvRecords);
 	}
 
@@ -60,7 +60,7 @@ public abstract class Task {
 	}
 	
 	protected String getOutputPath(String taskName){
-		final String[] pathComponents = this.csvInputFile.getPathToFile().split("\\.");
+		final String[] pathComponents = this.csvInputFile.getFile().split("\\.");
 		StringBuilder builder = new StringBuilder();
 		builder.append(pathComponents[0]);
 		builder.append("_");

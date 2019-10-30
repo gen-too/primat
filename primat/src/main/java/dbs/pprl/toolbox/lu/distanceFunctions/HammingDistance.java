@@ -9,8 +9,8 @@ public class HammingDistance implements DistanceFunction{
 
 	@Override
 	public double computeDistance(Node node1, Node node2) {
-		final BitSet bs1 = node1.getFeatures().getBitVector();
-		final BitSet bs2 = node2.getFeatures().getBitVector();
+		final BitSet bs1 = node1.getFeatures().getBitVectors().get(0);
+		final BitSet bs2 = node2.getFeatures().getBitVectors().get(0);
 		
 		final BitSet xor = BitSetUtils.xor(bs1, bs2);
 		return xor.cardinality();

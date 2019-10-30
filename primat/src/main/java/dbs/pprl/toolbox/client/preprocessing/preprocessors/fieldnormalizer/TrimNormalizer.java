@@ -12,5 +12,10 @@ public class TrimNormalizer implements Normalizer{
 	public String normalize(String string) {
 		return string.trim();
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 
 }

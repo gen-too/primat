@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
 Built-By: mfranke
-Build-Jdk: 10.0.2
+Build-Jdk: 11.0.4
+Implementation-Title: toolbox-pprl
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: dbs.pprl.toolbox
+Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse
 

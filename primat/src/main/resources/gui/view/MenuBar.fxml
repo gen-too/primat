@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.input.KeyCodeCombination?>
+
+<MenuBar id="menu-bar" prefHeight="35.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.MenuBarController">
+	<menus>
+		<Menu mnemonicParsing="false" text="File">
+			<items>
+				<MenuItem mnemonicParsing="false" onAction="#showFileSystemOpenDialog" styleClass="openFileMenuItem" text="Load...">
+					<accelerator>
+						<KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+					</accelerator>
+				</MenuItem>
+				<MenuItem fx:id="saveFileMenuItem" disable="true" mnemonicParsing="false" onAction="#showFileSystemSaveDialog" styleClass="saveFileMenuItem" text="Save As...">
+					<accelerator>
+						<KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+					</accelerator>
+				</MenuItem>
+			</items>
+		</Menu>
+		<Menu mnemonicParsing="false" text="Help">
+			<items>
+				<MenuItem mnemonicParsing="false" styleClass="aboutMenuItem" text="About" />
+			</items>
+		</Menu>
+	</menus>
+</MenuBar>

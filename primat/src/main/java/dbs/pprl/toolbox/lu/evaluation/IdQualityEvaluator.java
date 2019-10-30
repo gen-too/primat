@@ -15,6 +15,8 @@ public final class IdQualityEvaluator extends QualityEvaluationComponent {
 	
 	private BigDecimal realMatches;
 		
+	//TODO: calculate the number of real matches based on the input files
+	//TODO: Hashing for equal bloom filter check?
 	public IdQualityEvaluator(long realMatches){
 		this.realMatches = BigDecimal.valueOf(realMatches);
 	}

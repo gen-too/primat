@@ -104,8 +104,7 @@ public class BasicMatcher extends MatchingComponent{
 				+ this.candidatePairs.size() 
 				+ "\n"
 				+ ANSICode.colorize(blockingMetrics.toString(), ANSICode.GREEN)
-		);
-		
+		);		
 	}
 	
 	private void runSimilarityCalculation(){

@@ -7,8 +7,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.BitSet;
 
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
+import org.apache.commons.codec.binary.Hex;
+import org.apache.commons.codec.binary.StringUtils;
+import org.apache.commons.codec.digest.DigestUtils;
 
 
 /**
@@ -17,7 +22,31 @@ import javax.crypto.spec.SecretKeySpec;
  * @author mfranke
  */
 public class HashUtils {
-	
+	public enum HashingAlgorithm{
+		MD2("MD2"),
+		MD5("MD5"),
+		SHA1("SHA-1"),
+		SHA256("SHA-256"),
+		SHA384("SHA-384"),
+		SHA512("SHA-512");
+		
+		private String name;
+		
+		HashingAlgorithm(String name) {
+			this.name = name;
+		}
+		
+		public String getName() {
+			return name;
+		}
+		
+		@Override
+		public String toString() {
+			return this.name;
+		}
+		
+	}
+		
 	private static final String MD5 = "MD5";
 	private static final String SHA = "SHA";
 	
@@ -28,8 +57,34 @@ public class HashUtils {
 		throw new RuntimeException();
 	}
 	
+	public static int getHashInt(String data, HashingAlgorithm algorithm) {
+		return getDigest(data, algorithm.toString());
+	}
 	
-	//TODO: Clean up the following 4 methods
+	public static String getHashHex(String data, HashingAlgorithm algorithm) {
+		return getDigestHex(data, algorithm.toString());
+	}
+	
+	
+	/**
+	 * 
+	 * @param data
+	 * @param algorithm i.e. md2, md5, sha-1, sha-256, sha-384, sha-512
+	 * @return
+	 */
+	public static int getDigest(String data, String algorithm) {
+		System.out.println("DATA: " + data + "..." + algorithm);
+		final byte[] digest = DigestUtils.getDigest(algorithm).digest(StringUtils.getBytesUtf8(data));
+		final BigInteger val = new BigInteger(digest);
+		return val.intValue();
+	}
+	
+	public static String getDigestHex(String data, String algorithm) {
+		final byte[] digest = DigestUtils.getDigest(algorithm).digest(StringUtils.getBytesUtf8(data));
+		return Hex.encodeHexString(digest);
+	}
+	
+	//TODO: Clean up the following 4 methods ??
 	public static String calculateHmacSHA1(String data, String key) throws NoSuchAlgorithmException, InvalidKeyException{
 		final SecretKeySpec signingKey = new SecretKeySpec(key.getBytes(), HMAC_SHA1_ALGORITHM);
 		final Mac mac = Mac.getInstance(HMAC_SHA1_ALGORITHM);

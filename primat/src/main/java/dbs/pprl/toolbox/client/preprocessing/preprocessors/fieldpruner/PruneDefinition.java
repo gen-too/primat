@@ -2,15 +2,20 @@ package dbs.pprl.toolbox.client.preprocessing.preprocessors.fieldpruner;
 
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Collections;
 
+
+import java.util.Collections;
 
 public class PruneDefinition {
 		
 	private Set<Integer> columnsToPrune;
 	
+	public PruneDefinition(Set<Integer> columnsToPrune) {
+		this.columnsToPrune = columnsToPrune;
+	}
+	
 	public PruneDefinition() {
-		this.columnsToPrune = new TreeSet<>(Collections.reverseOrder());
+		this(new TreeSet<>(Collections.reverseOrder()));
 	}
 
 	public void add(int columnToPrune){
@@ -23,5 +28,9 @@ public class PruneDefinition {
 	
 	public Set<Integer> getColumnsToPrune(){
 		return this.columnsToPrune;
+	}
+	
+	public void setColumnsToPrune(Set<Integer> columnsToPrune) {
+		this.columnsToPrune = columnsToPrune;
 	}
 }

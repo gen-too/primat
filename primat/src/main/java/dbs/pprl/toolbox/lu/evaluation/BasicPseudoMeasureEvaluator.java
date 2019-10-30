@@ -176,6 +176,7 @@ public final class BasicPseudoMeasureEvaluator extends PseudoMeasureEvaluationCo
 	private BigDecimal calculcatePseudoPrecision1(){
 		final BigDecimal nom = leftNodeCount;
 		final BigDecimal denom = numberOfClassifiedMatches;
+		//TODO: check division by zero.
 		final BigDecimal pseudoPrecision = MetricFormat.divide(nom, denom);
 		return pseudoPrecision;
 	}

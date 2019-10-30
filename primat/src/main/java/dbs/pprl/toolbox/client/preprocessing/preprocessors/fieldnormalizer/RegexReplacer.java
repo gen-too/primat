@@ -20,5 +20,10 @@ public class RegexReplacer implements Normalizer{
 	public String normalize(String string) {
 		return string.replaceAll(regex, replacement);
 	}
+	
+	@Override
+	public String toString() {
+		return this.getClass().getSimpleName();
+	}
 
 }

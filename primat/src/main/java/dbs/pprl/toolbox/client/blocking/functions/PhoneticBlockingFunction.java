@@ -3,11 +3,11 @@ package dbs.pprl.toolbox.client.blocking.functions;
 import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.StringEncoder;
 
-public class PhoneticBlockingFunction implements BlockingFunction{
+public abstract class PhoneticBlockingFunction implements BlockingFunction{
 
 	private final StringEncoder codec;
 	
-	public PhoneticBlockingFunction(StringEncoder codec){
+	protected PhoneticBlockingFunction(StringEncoder codec){
 		this.codec = codec;
 	}
 	
@@ -23,5 +23,4 @@ public class PhoneticBlockingFunction implements BlockingFunction{
 		}
 		return encoding;
 	}
-
 }

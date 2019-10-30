@@ -1,6 +1,9 @@
 package dbs.pprl.toolbox.client.encoding.bloomfilter;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
+
 
 public abstract class HashingMethod {
 	
@@ -17,7 +20,18 @@ public abstract class HashingMethod {
 	}
 	
 	public abstract Set<Integer> hash(String element, int hashFunctions);
-
+	
+	public Set<Integer> hash(Collection<String> elements, int hashFunctions){
+		final Set<Integer> positions = new HashSet<>();
+		for (final String e : elements) {
+			System.out.println(e);
+			final Set<Integer> positionsForElement = this.hash(e, hashFunctions);
+			positions.addAll(positionsForElement);
+			System.out.println(positions);
+		}
+		return positions;
+	}
+		
 	public void setSalt(String salt){
 		this.salt = salt;
 	}
