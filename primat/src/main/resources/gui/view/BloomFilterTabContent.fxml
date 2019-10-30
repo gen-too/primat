@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import dbs.pprl.toolbox.client.gui.controller.NumericTextField?>
+<?import dbs.pprl.toolbox.data_owner.gui.controller.NumericTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
