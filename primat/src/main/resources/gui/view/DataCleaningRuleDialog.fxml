@@ -9,7 +9,8 @@
 <?import org.controlsfx.control.CheckComboBox?>
 
 <fx:root alignment="CENTER_LEFT" hgap="10.0" layoutX="4.0" minHeight="182.0" 
-minWidth="272.0" prefHeight="182.0" prefWidth="449.0" type="GridPane" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+minWidth="272.0" prefHeight="182.0" prefWidth="449.0" type="GridPane" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" 
+xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
 		<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="0.0" prefWidth="200.0" />
 		<ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />

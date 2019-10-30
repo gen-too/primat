@@ -7,7 +7,7 @@ import java.util.List;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
-import dbs.pprl.toolbox.client.data.Printable;
+import dbs.pprl.toolbox.data_owner.data.Printable;
 
 public class CSVWriter {
 

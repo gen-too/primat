@@ -5,7 +5,8 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.input.KeyCodeCombination?>
 
-<MenuBar id="menu-bar" prefHeight="35.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.MenuBarController">
+<MenuBar id="menu-bar" prefHeight="35.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="dbs.pprl.toolbox.data_owner.gui.controller.MenuBarController">
 	<menus>
 		<Menu mnemonicParsing="false" text="File">
 			<items>

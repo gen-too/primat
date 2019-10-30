@@ -9,7 +9,8 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.DataPaneController">
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="dbs.pprl.toolbox.data_owner.gui.controller.DataPaneController">
 	<children>
 		<ToolBar id="toolbar-data" prefHeight="40.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
 			<items>

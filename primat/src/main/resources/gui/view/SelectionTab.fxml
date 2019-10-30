@@ -10,7 +10,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.SelectionTabController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+ fx:controller="dbs.pprl.toolbox.data_owner.gui.controller.SelectionTabController">
    <center>
 		<TableView fx:id="selectionTable" onMouseClicked="#recordInSelectionTableClicked" prefHeight="288.0" prefWidth="736.0">
 			<placeholder>

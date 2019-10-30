@@ -12,7 +12,8 @@
 
 <!-- style-sheet can also be set programatically -->
 
-<BorderPane prefHeight="708.0" prefWidth="997.0" stylesheets="@/gui/style/application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.MainController">
+<BorderPane prefHeight="708.0" prefWidth="997.0" stylesheets="@/gui/style/application.css" xmlns="http://javafx.com/javafx/11.0.1
+" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.data_owner.gui.controller.MainController">
    <center>
       <TabPane id="tab-pane-lu" fx:id="tabPane" disable="true" prefHeight="443.0" prefWidth="988.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="180.0" tabMaxWidth="75.0" tabMinHeight="180.0" tabMinWidth="75.0" BorderPane.alignment="CENTER">
         <tabs>

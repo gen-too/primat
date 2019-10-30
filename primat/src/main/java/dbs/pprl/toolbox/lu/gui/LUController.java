@@ -9,11 +9,9 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import org.apache.commons.csv.CSVRecord;
-import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.ToggleSwitch;
 
 import dbs.pprl.toolbox.lu.blocking.Blocker;
-import dbs.pprl.toolbox.lu.blocking.standard.lsh.HLshBlocker;
 import dbs.pprl.toolbox.lu.blocking.standard.lsh.HLshBlocker.HLshBlockerBuilder;
 import dbs.pprl.toolbox.lu.classification.Classificator;
 import dbs.pprl.toolbox.lu.classification.ThresholdClassificator;
@@ -36,21 +34,11 @@ import dbs.pprl.toolbox.lu.similarityFunctions.JaccardSimilarity;
 import dbs.pprl.toolbox.lu.similarityFunctions.SimilarityFunction;
 import dbs.pprl.toolbox.utils.CSVReader;
 import dbs.pprl.toolbox.utils.CSVToEncodedRecordTransformer;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 
 

@@ -24,6 +24,7 @@ public class ClassNameObjectConverter {
 	 * @throws InvocationTargetException
 	 * @throws ClassNotFoundException
 	 */
+	@SuppressWarnings("deprecation")
 	public static Object getObject(String dir, String className, String... params) 
 		throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, ClassNotFoundException{
 		

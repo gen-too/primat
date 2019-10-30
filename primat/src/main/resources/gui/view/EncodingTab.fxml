@@ -8,7 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dbs.pprl.toolbox.client.gui.controller.EncodingTabController">
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="dbs.pprl.toolbox.data_owner.gui.controller.EncodingTabController">
    <center>
 		<TabPane id="tab-pane-main" fx:id="bloomFilterTabPane" prefHeight="342.0" prefWidth="778.0" tabClosingPolicy="ALL_TABS">
 			<padding>
