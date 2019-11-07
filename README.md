@@ -1,6 +1,7 @@
 # PRIMAT: Private Matching Toolbox
 
-![](primat_logo.png)
+<img src="primat_logo.png" width="250">
+
 
 PRIMAT is an open source (ALv2) toolbox for the definition and execution of PPRL workflows. 
 It offers several components for data owners and the central linkage unit that provide state-of-the-art PPRL methods,
