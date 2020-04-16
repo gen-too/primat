@@ -9,19 +9,6 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Service;
 
-import dbs.pprl.toolbox.data_owner.common.Task;
-import dbs.pprl.toolbox.data_owner.common.config.PreprocessingConfig;
-import dbs.pprl.toolbox.data_owner.data.attributes.AttributeParseException;
-import dbs.pprl.toolbox.data_owner.data.records.Record;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.Preprocessor;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldmerger.FieldMerger;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldmerger.MergeDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldnormalizer.FieldNormalizer;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldnormalizer.NormalizeDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldpruner.FieldPruner;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldpruner.PruneDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldsplitter.FieldSplitter;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldsplitter.SplitDefinition;
 
 /**
  * Class for executing a defined pre-processing workflow, i. e.,
@@ -30,9 +17,10 @@ import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldsplitter.Spl
  *
  */
 @Service
-@Import(PreprocessingConfig.class)
-public class PreprocessingTask extends Task{
-	
+//@Import(PreprocessingConfig.class)
+public class PreprocessingTask//extends Task{
+{
+	/*
 	public static final String TASK_NAME = "preproc";
 	
 	private final List<Preprocessor> preprocessors;
@@ -99,5 +87,5 @@ public class PreprocessingTask extends Task{
 //        preprocessingTask.execute();        
         applicationContext.close();
 	}
-
+*/
 }

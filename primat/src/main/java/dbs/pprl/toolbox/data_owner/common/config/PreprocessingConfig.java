@@ -14,21 +14,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldmerger.MergeDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldmerger.Merger;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldnormalizer.NormalizeDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldnormalizer.Normalizer;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldpruner.PruneDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldsplitter.SplitDefinition;
-import dbs.pprl.toolbox.data_owner.preprocessing.preprocessors.fieldsplitter.Splitter;
-import dbs.pprl.toolbox.utils.ClassNameObjectConverter;
-
 @Configuration
 @PropertySource("preprocessing.properties")
 @ConfigurationProperties
-@Import({CSVInputFileConfig.class})
+//@Import({CSVInputFileConfig.class})
 public class PreprocessingConfig {
-
+/*
 	@Autowired
 	private CSVInputFileConfig csvInputFileConfig;
 
@@ -188,5 +179,5 @@ public class PreprocessingConfig {
     public MergeDefinition getMergeDefinition() {
     	return this.mergeDefinition;
     }
-   
+   */
 }
