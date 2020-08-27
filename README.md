@@ -12,6 +12,12 @@ post-processing and more.
 [PRIMAT](https://dl.acm.org/citation.cfm?doid=3352063.3360392) is developed by the [Database Group](https://dbs.uni-leipzig.de/research/projects/pper_big_data) of the University of Leipzig, Germany.
 
 
+## Requirements
+
+- Java 11+ 
+- Maven
+
+
 ## General
 
 PRIMAT provides two separte applications for data owners and the linkage unit.
