@@ -1,0 +1,51 @@
+Id;LastName;FirstName;Title;Address;Zip;City;State1;State2;PhoneNumber
+1;Abraham;Glenn;;Ponickaustr. 20;04249;Leipzig;Sachsen;SN;0341 4283261
+2;Abt;Thomas;;Hellerstr. 26;04179;Leipzig;Sachsen;SN;0341 4411800
+3;Achilles;Erhardt;;Blücherstr. 2;04159;Leipzig;Sachsen;SN;0341 9021361
+4;Alt;Edith;;Connewitzer Str. 5;04289;Leipzig;Sachsen;SN;0341 8789007
+5;Cruse;Peter;;Kloßstr. 9;04249;Leipzig;Sachsen;SN;0341 4011290
+6;Dr. Richter;Ursula;;Mainzerhofstr. 4;99084;Erfurt;Thüringen;TH;0361 5403591
+7;Decker;Gina;;Elsterblick 2;04159;Leipzig;Sachsen;SN;0341 9102998
+8;Ewald;Klaus;;Pommernstr. 26;04318;Leipzig;Sachsen;SN;0172 3747160
+9;Engelhardt;Jürgen;;Walkmühlstr. 1A;99084;Erfurt;Thüringen;TH;0361 2259923
+10;Farsad;Diana;;Tschaikowskistr. 23;04105;Leipzig;Sachsen;SN;0176 29412032
+11;Feiste;Gerhard;;Antonienstr. 25A;04229;Leipzig;Sachsen;SN;0341 4246803
+12;Grebe;Hanni/hans-Werner;;Bethauer Str. 14;04886;Beilrode;Sachsen;SN;0172 7838758
+13;Hammer;Erna;;;99085;Erfurt;Thüringen;TH;01525 7924523
+14;Knecht;Mathias;;Leipziger Str. 14;04838;Laußig;Sachsen;SN;034243 20323
+15;Koch;Thomas;;Elsterberg 9;04159;Leipzig;Sachsen;SN;0179 2969247
+16;Laage;Gerhard;;Feiningerstr. 32;99085;Erfurt;Thüringen;TH;0361 6436966
+17;Marx;Hans-Joachim;Dr.;Bergstr. 2;01662;Meißen;Sachsen;SN;03521 735926
+18;Müller;Georg-Friedrich;;Okerstr. 3;12049;Berlin;Berlin;BE;030 62723004
+19;Müller;Georg;;Heinrich-Heine-Str. 2;10179;Berlin;Berlin;BE;030 2791644
+20;Müller;Georg;;Clausewitzstr. 52;99099;Erfurt;Thüringen;TH;0361 4215225
+21;Müller;Thomas;;Gärtnerstr. 177;04209;Leipzig;Sachsen;SN;0341 4245917
+22;Mudrick;Waldfried;Dipl.-Ing.;Humboldtstr. 19A;99096;Erfurt;Thüringen;TH;0361 3733684
+23;Munkelt;Inge-Lore;;Philipp-Reis-Str. 4;04179;Leipzig;Sachsen;SN;0341 4512899
+24;NÄTHER;ULF GUNNAR;;Dr.-Hermann-Duncker-Str. 24;04179;Leipzig;Sachsen;SN;01577 2564495
+25;Plaschke;Gert Michael;;Kreuzdornstr. 15;04329;Leipzig;Sachsen;SN;0341 4249517
+26;Pleißner;Sigrid;Dr.;Klettenstr. 36;04329;Leipzig;Sachsen;SN;0172 3574427
+27;Pleß;Jürgen u. Bärbel;;Stieglitzstr. 62;04229;Leipzig;Sachsen;SN;0341 4797661
+28;Rothe;Peter;Dipl.-Ing.;Am Mückenschlößchen 13;04105;Leipzig;Sachsen;SN;0341 9804009
+29;Rothe;Peter;;Gärtnerstr. 161;04209;Leipzig;Sachsen;SN;0341 4122432
+30;Rudolph;Maik;;Elsterstr. 42A;04109;Leipzig;Sachsen;SN;01520 9021753
+31;Rusch-Ziegner;Angelika;;Straße des 18. Oktober 26;04103;Leipzig;Sachsen;SN;0341 2218785
+32;Rust;Volker;Dr.med.;Nußbaumallee 2;04288;Leipzig;Sachsen;SN;034297 41076
+33;Schäfer;Hans-Ullrich;;Landeskronstr. 48;02826;Görlitz;Sachsen;SN;03581 314045
+34;Schiller;Juliane;;Am Schwemmbach 34;99099;Erfurt;Thüringen;TH;0361 5188655
+35;Schmidt;Bernd;;Wilhelmsruher Damm 179;13439;Berlin;Berlin;BE;030 4156270
+36;Schmidt;Hans-Friedrich;Dr.;Beethovenweg 7;01454;Radeberg;Sachsen;SN;03528 445381
+37;Schmid;Ute;;Blechschmidtweg 23;08523;Plauen;Sachsen;SN;0171 2666871
+38;Staude;Thomas u. Margret;;Karl-Heine-Str. 26A;04229;Leipzig;Sachsen;SN;0341 4799365
+39;Stein;Renate;;Erich-Lodemann-Str. 131;12437;Berlin;Berlin;BE;030 5327781
+40;Stein;Resi;;Nixenweg 19;04277;Leipzig;Sachsen;SN;0341 8613225
+41;Stier;Christoph;;Zweinaundorfer Str. 225;04316;Leipzig;Sachsen;SN;0341 6511810
+42;STOLLBERG;SIMON;;Blochmannstr. 7;04105;Leipzig;Sachsen;SN;0178 4987315
+43;Storm;Veronika;;Thomasiusstr. 32;04109;Leipzig;Sachsen;SN;0341 2532493
+44;Süß;Bernd;;Meineckestr. 19;99092;Erfurt;Thüringen;TH;0361 2219030
+45;Tran;Van Cuong;;Grüner Weg 26;01156;Dresden;Sachsen;SN;0351 4537478
+46;Trautmann;Jette;;Fritz-Reuter-Str. 5;01097;Dresden;Sachsen;SN;0173 7125185
+47;Trepte;Karl-Heinz;;Striesener Str. 41A;01307;Dresden;Sachsen;SN;0351 4412004
+48;Zschache;Herta;;Oelsnitzer Str. 3;04349;Leipzig;Sachsen;SN;0341 9214170
+49;Zylla;Irmgard;;Juri-Gagarin-Ring 22;99084;Erfurt;Thüringen;TH;0361 6461692
+50;Zylla;Wolfram;;Rehefelder Str. 3;01127;Dresden;Sachsen;SN;0351 7954934
