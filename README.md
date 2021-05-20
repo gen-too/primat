@@ -56,7 +56,7 @@ post-processing and more.
 | Data generator & corruptor | - Data generation<br> - Data corruption | Implemented<br>Planned |
 | Data cleaning | - Split/merge/remove attributes<br>- Replace/remove unwanted values<br>- OCR transformation | Implemented<br>Implemented<br>Implemented |
 | Encoding | - Bloom filter encoding & hardening<br>- Support of alternative encoding schemes| Implememnted<br>Planned |
-| Matching | - Standard blocking, LSH-based blocking, Metric Space filtering<br>- Threshold-based classification<br>- Post-processing<br>- Multi-threaded execution<br>- Distributed matching<br>- Multi-Party support, match cluster management<br>- Incremental Matching | Implemented<br>Implemented<br>Implemented<br>Implemented<br>Integration outstanding<br>In development<br>In development |
+| Matching | - Standard & LSH-based blocking, Metric Space filtering<br>- Threshold-based classification<br>- Post-processing<br>- Multi-threaded execution<br>- Distributed matching<br>- Multi-Party support, match cluster management<br>- Incremental Matching | Implemented<br>Implemented<br>Implemented<br>Implemented<br>Integration outstanding<br>In development<br>In development |
 | Evaluation | - Measure for assessing quality & scalability<br>- Masked match result visualization | Implemented<br>Integration outstanding |
 
 ### Requirements
