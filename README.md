@@ -11,6 +11,9 @@ post-processing and more.
 
 [PRIMAT](https://dl.acm.org/citation.cfm?doid=3352063.3360392) is developed by the [Database Group](https://dbs.uni-leipzig.de/research/projects/pper_big_data) of the University of Leipzig, Germany.
 
+⚠️ Attention: This repository contains the first PRIMAT release which was presented at the VLDB 2019. Information on the (demo) showcase applications can be found below. Since then we did an extensive refactoring of the code base to simplify usage and to improve extensibility and maintainability. As of December 2021, new PRIMAT versions are released at https://git.informatik.uni-leipzig.de/dbs/pprl/primat.
+
+
 ## Privacy-preserving Record Linkage
 
 - Task of identifying record in different databases reffering to the same person
@@ -83,7 +86,3 @@ The linkage unit application provides linkage functionalities, in particular blo
 To run the linkage unit application run the following command in the primat directory (where the .pom-file is located):
 
 `mvn clean javafx:run -Dprimat.mainClass=dbs.pprl.toolbox.lu.gui.LinkageUnitApp`
-
-## Future Plans
-
-We are currently working on a comprehensive refactoring of the current code base. This includes the separtion of the code into several modules to simplify usage and to improve extensibility and maintainability. Moreover, we plan to gradually add new features releated to our ongoing research.
